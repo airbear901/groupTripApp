@@ -1,4 +1,7 @@
 <html>
+<head>
+	<?php include 'includes/connectToDb.php'; ?>
+</head>
 <body>
 
 <?php
@@ -6,10 +9,23 @@ $expenseTitle = $_POST["expenseTitle"];
 $expenseCost = $_POST["expenseCost"];
 $expensePurchasers = $_POST["expensePurchasers"];
 $expenseUsers= $_POST["expenseUsers"];
+$tripId= $_POST["tripId"];
 $costPp = $expenseCost / $expenseUsers;
 $spendPp = $expenseCost / $expensePurchasers;
 $owedToPurchasers = $costPp - $spendPp;
 
+// Query to insert into expenses
+$sql = "INSERT INTO expenses (tripId, name, totalCost, numberOfPurchasers, numberOfUsers)
+VALUES ('$tripId', '$expenseTitle', '$expenseCost', '$expensePurchasers', '$expenseUsers')";
+
+// Confirm added to DB
+if (mysqli_query($conn, $sql)) {
+	echo "successfully added to db";
+	} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+// Close connection
+mysqli_close($conn);
 ?>
 
 
