@@ -13,6 +13,18 @@ $tripEndDate = $_POST["tripEndDate"];
 $tripDescription= $_POST["tripDescription"];
 $tripLocation= $_POST["tripLocation"];
 
+
+// Turn location input into Lat/Long coordinates
+
+	$maps_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($tripLocation);
+
+	$maps_json = file_get_contents($maps_url);
+	$maps_array = json_decode($maps_json, true);
+
+	$lng = $maps_array['results'][0]['geometry']['location']['lng'];
+	$lat = $maps_array['results'][0]['geometry']['location']['lat'];
+
+
 // Query to insert into myDB, table MyGuests
 $sql = "INSERT INTO trips (name, startDate, endDate, description, location)
 VALUES ('$tripName', '$tripStartDate', '$tripEndDate', '$tripDescription', '$tripLocation')";
@@ -39,8 +51,15 @@ if (mysqli_query($conn, $sql)) {
 }
 // Close connection
 mysqli_close($conn);
+
 ?>
 <br>
+<iframe
+  width="450"
+  height="250"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyANQeFfFVmE-Kyw1SJ5bbarzfhAvokDfQY&q=<?php echo $tripLocation; ?>" allowfullscreen>
+</iframe>
 
 
 
