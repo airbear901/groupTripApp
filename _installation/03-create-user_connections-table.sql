@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `login`.`user_connections` (
+CREATE TABLE IF NOT EXISTS `groupTripApp`.`user_connections` (
  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
  `user_id` int(11) unsigned NOT NULL,
  `user_rememberme_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
