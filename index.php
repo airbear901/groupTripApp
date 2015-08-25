@@ -3,6 +3,35 @@
 <head>
     <?php include 'functions.php'; ?>
     <script script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+      $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "minDate", selectedDate );
+        //$("#from").datepicker({ dateFormat: "yy-mm-dd" }).val();
+        
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+      
+      
+    </script>
 </head>
 <body>
 
@@ -46,14 +75,18 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
 } else if ($login->isUserLoggedIn()) {
     include('views/logged_in.php'); ?>
 
+
+<h1>Welcome <?php echo $_SESSION['user_email']; ?></h2>
 <form action="createTrip.php" method="post">
     Trip Name: <input type="text" name="tripName" id="tripName"><br>
-    Trip Start Date: <input type="text" name="tripStartDate" id="tripStartDate"><br>
-    Trip End Date: <input type="text" name="tripEndDate" id="tripEndDate"><br>
+    <label for="from">From</label><input type="text" id="from" name="from"><br>
+    <label for="to">to</label><input type="text" id="to" name="to"><br>
     Description: <input type="textarea" name="tripDescription" id="tripDescription"><br>
     Location: <input type="text" name="tripLocation" id="tripLocation"><br>
+    <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id'];?>"><br>
     <input type="submit">
 </form>
+
 
 <?php
 // the user is not logged in, we show the login form

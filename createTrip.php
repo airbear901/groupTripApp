@@ -8,10 +8,11 @@
 
 // Define variables
 $tripName = $_POST["tripName"];
-$tripStartDate = $_POST["tripStartDate"];
-$tripEndDate = $_POST["tripEndDate"];
+$tripStartDate = $_POST["from"];
+$tripEndDate = $_POST["to"];
 $tripDescription= $_POST["tripDescription"];
 $tripLocation= $_POST["tripLocation"];
+$tripUserId= $_POST["user_id"];
 
 
 // Turn location input into Lat/Long coordinates
@@ -26,8 +27,8 @@ $tripLocation= $_POST["tripLocation"];
 
 
 // Query to insert into myDB, table MyGuests
-$sql = "INSERT INTO trips (name, startDate, endDate, description, location)
-VALUES ('$tripName', '$tripStartDate', '$tripEndDate', '$tripDescription', '$tripLocation')";
+$sql = "INSERT INTO trips (userId, name, startDate, endDate, description, location)
+VALUES ('$tripUserId', '$tripName', '$tripStartDate', '$tripEndDate', '$tripDescription', '$tripLocation')";
 
 // Confirm added to DB
 if (mysqli_query($conn, $sql)) {
