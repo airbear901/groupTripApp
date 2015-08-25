@@ -34,9 +34,11 @@ VALUES ('$tripUserId', '$tripName', '$tripStartDate', '$tripEndDate', '$tripDesc
 if (mysqli_query($conn, $sql)) {
     
     // Get the ID from the last insert
-    $last_id = mysqli_insert_id($conn);
+    $last_id = mysqli_insert_id($conn); ?>
 
-    echo "Your trip has been created successfully <br> Add an expense below!";
+<h1><?php echo $tripName ?></h1>
+<?php
+    echo "Add an expense below!";
 
 		echo '<form action="submit.php" method="post">';
 			echo 'Expense Name: <input type="text" name="expenseTitle" id="expenseTitle"><br>';

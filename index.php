@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include 'functions.php'; ?> 
+    <?php  ?> 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -47,10 +47,31 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
 
 // the user is logged in, we show informations about the current user
 } else if ($login->isUserLoggedIn()) {
-    include('views/logged_in.php'); ?>
+    include('views/logged_in.php'); 
+    include ('includes/functions.php');
+    
+   $userTrips = getTrips($_SESSION['user_id']);
+    
+
+    echo "<table cellpadding=1 class='table tablesorter' id='thetable'>"; 
+        echo "<thead>";
+        echo "<th>Trip Name</th><th>Date</th><th>Location</th>";
+        echo "</thead>";
+         while($info = mysqli_fetch_array( $userTrips )) 
+         { 
+        echo "<tr>"; 
+        echo "<td>".$info['name'] . "</td> "; 
+        echo "<td>".$info['startDate'] . "</td> ";
+        echo "<td>".$info['location'] . "</td></tr> ";
+        } 
+        echo "</table>"; 
 
 
-<h1>Welcome <?php echo $_SESSION['user_email']; ?></h2>
+
+    ?>
+
+
+<h1>Create a Trip</h2>
 <form action="createTrip.php" method="post">
     Trip Name: <input type="text" name="tripName" id="tripName"><br>
     <label for="from">From</label><input type="text" id="from" name="from"><br>
