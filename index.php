@@ -63,6 +63,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
 
 
 <?php
+
 // the user is not logged in, we show the login form
 } else {
     include('views/login.php');
