@@ -1,37 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include 'functions.php'; ?>
-    <script script type="text/javascript" src="script.js"></script>
+    <?php include 'functions.php'; ?> 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
-      $(function() {
-    $( "#from" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 2,
-      dateFormat: 'yy-mm-dd',
-      onClose: function( selectedDate ) {
-        $( "#from" ).datepicker( "option", "minDate", selectedDate );
-        //$("#from").datepicker({ dateFormat: "yy-mm-dd" }).val();
-        
-      }
-    });
-    $( "#to" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 2,
-      dateFormat: 'yy-mm-dd',
-      onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-  });
-      
-      
-    </script>
+    <script script type="text/javascript" src="js/script.js"></script>  
 </head>
 <body>
 
