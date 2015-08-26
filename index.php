@@ -52,7 +52,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
     
    $userTrips = getTrips($_SESSION['user_id']);
     
-
+//print all the trips the user has
     echo "<table cellpadding=1 class='table tablesorter' id='thetable'>"; 
         echo "<thead>";
         echo "<th>Trip Name</th><th>Date</th><th>Location</th>";
@@ -64,7 +64,18 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
         echo "<td>".$info['startDate'] . "</td> ";
         echo "<td>".$info['location'] . "</td></tr> ";
         } 
-        echo "</table>"; 
+        echo "</table><br><br>"; 
+
+//build search form
+      echo  "<form action='search.php' method='post'>";
+          echo  "Search for an email:";
+           echo "<input type='text' id='emailSearch' />";
+         
+           echo "<br />";
+           echo "<input type='submit' value='Search' />";
+       echo "</form>";
+
+
 
 
 
