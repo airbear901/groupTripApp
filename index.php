@@ -60,7 +60,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
          while($info = mysqli_fetch_array( $userTrips )) 
          { 
         echo "<tr>"; 
-        echo "<td>".$info['name'] . "</td> "; 
+        echo "<td><a href='createTrip.php?trip_id=" . $info['id'] . "'>" .$info['name'] . "</a></td> "; 
         echo "<td>".$info['startDate'] . "</td> ";
         echo "<td>".$info['location'] . "</td></tr> ";
         } 
