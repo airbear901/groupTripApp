@@ -9,14 +9,14 @@
 
 <?php
 
-if (isset($_GET["trip_id"])){ 
+if (isset($_GET["trip_id"])) { 
 	
 	$trip_id = $_GET["trip_id"];
 	
 	$tripLocation = getTripLocation($trip_id);
-	echo $tripLocation;
+	
 
-} else if (isset($_POST["tripName"])) { //New trip
+} elseif (isset($_POST["tripName"])) { //New trip
 	
 	// make it a variable
 	$tripName = $_POST["tripName"];
@@ -50,8 +50,8 @@ if (isset($_GET["trip_id"])){
 echo " The location its is: " . $tripLocation;
 
 
-/*
-	// Turn location input into Lat/Long coordinates
+/*  // Turn location input into Lat/Long coordinates
+	
 
 	$maps_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($tripLocation);
 
@@ -63,24 +63,18 @@ echo " The location its is: " . $tripLocation;
 
 */
 
+echo "<h1>" . $tripName . "</h1>";
 	
+echo "Add an expense below!";
 
- echo "<h1>" . $tripName . "</h1>";
-	
-	    echo "Add an expense below!";
-
-			echo '<form action="submit.php" method="post">';
-				echo 'Expense Name: <input type="text" name="expenseTitle" id="expenseTitle"><br>';
-				echo 'Cost: <input type="text" name="expenseCost" id="expenseCost"><br>';
-				echo 'Number of Purchasers: <input type="text" name="expensePurchasers" id="expensePurchasers"><br>';
-				echo 'Number of Users: <input type="text" name="expenseUsers" id="expenseUsers"><br>';
-				echo '<input type="hidden" name="tripId" value="' . $trip_id . '">';
-				echo '<input type="submit">';
-			echo '</form>';
-
-	
-
-
+echo '<form action="submit.php" method="post">';
+	echo 'Expense Name: <input type="text" name="expenseTitle" id="expenseTitle"><br>';
+	echo 'Cost: <input type="text" name="expenseCost" id="expenseCost"><br>';
+	echo 'Number of Purchasers: <input type="text" name="expensePurchasers" id="expensePurchasers"><br>';
+	echo 'Number of Users: <input type="text" name="expenseUsers" id="expenseUsers"><br>';
+	echo '<input type="hidden" name="tripId" value="' . $trip_id . '">';
+	echo '<input type="submit">';
+echo '</form>';
 
 ?>
 
