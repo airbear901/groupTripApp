@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script script type="text/javascript" src="js/script.js"></script>  
+    <script script type="text/javascript" src="js/script.js"></script> 
 </head>
 <body>
 
@@ -67,13 +67,9 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
         echo "</table><br><br>"; 
 
 //build search form
-      echo  "<form action='search.php' method='post'>";
-          echo  "Search for an email:";
-           echo "<input type='text' id='emailSearch' />";
-         
-           echo "<br />";
-           echo "<input type='submit' value='Search' />";
-       echo "</form>";
+      echo '<form action="" method="post">';
+          echo '<input type="text" placeholder="Name" id="customerAutocomplte" class="ui-autocomplete-input" autocomplete="off" />';
+      echo '</form>';
 
 
 
@@ -89,6 +85,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
     <label for="to">to</label><input type="text" id="to" name="to"><br>
     Description: <input type="textarea" name="tripDescription" id="tripDescription"><br>
     Location: <input type="text" name="tripLocation" id="tripLocation"><br>
+    Invite this person: <input type="text" name="invitedUser" id="invitedUser"><br>
     <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user_id'];?>"><br>
     <input type="submit">
 </form>

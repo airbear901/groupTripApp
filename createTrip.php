@@ -14,36 +14,45 @@ if (isset($_GET["trip_id"])) { //Old trip
 	$trip_id = $_GET["trip_id"];
 	
 	$tripLocation = getTripLocation($trip_id);
-	
 
-} 
-
-elseif (isset($_POST["tripName"])) { //New trip
+} elseif (isset($_POST["tripName"])) { //New trip
 	
 	// make it a variable
 	$tripName = $_POST["tripName"];
 	$tripStartDate = $_POST["from"];
 	$tripEndDate = $_POST["to"];
-	$tripDescription= $_POST["tripDescription"];
-	$tripLocation= $_POST["tripLocation"];
-	$tripUserId= $_POST["user_id"];
+	$tripDescription = $_POST["tripDescription"];
+	$tripLocation = $_POST["tripLocation"];
+	$tripUserId = $_POST["user_id"];	
+	$partEmail = $_POST["invitedUser"];
 
-	// Query to insert into myDB, table MyGuests
-	$sql = 'INSERT INTO trips (userId, name, startDate, endDate, description, location)
-	VALUES ("$tripUserId", "$tripName", "$tripStartDate", "$tripEndDate", "$tripDescription", "$tripLocation")';
-
+	// Query to insert into trips table
+	$sql = "INSERT INTO trips (userId, name, startDate, endDate, description, location)
+	VALUES ('$tripUserId', '$tripName', '$tripStartDate', '$tripEndDate', '$tripDescription', '$tripLocation')";
+	
 	// Confirm added to DB
 	if (mysqli_query($conn, $sql)) {
 	    
 	    // Get the ID from the last insert and set $trip_id
 	    $trip_id = mysqli_insert_id($conn);
+	    echo "successfully added to db";
 
-	    // Close connection
-		mysqli_close($conn);
-
-	} else {
+		} else {
 	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
+ 
+ 	//insert creator of trip to participants table 
+	$sql2 = "INSERT INTO participants (trip_id, user_id) VALUES ('$trip_id', '$tripUserId')";
+
+	if (mysqli_query($conn, $sql2)) {
+			// Close connection
+			mysqli_close($conn);
+		} else {
+		    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+		}
+	
+	// Close connection
+	mysqli_close($conn);
 
 } else { //Something wrong with the trip ID
 	echo "something is wrong with the trip ID";
@@ -63,6 +72,7 @@ elseif (isset($_POST["tripName"])) { //New trip
 
 */
 
+//Display input for adding expenses
 echo "<h1>" . $tripName . "</h1>";
 	
 echo "Add an expense below!";

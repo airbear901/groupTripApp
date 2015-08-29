@@ -20,12 +20,19 @@ VALUES ('$tripId', '$expenseTitle', '$expenseCost', '$expensePurchasers', '$expe
 
 // Confirm added to DB
 if (mysqli_query($conn, $sql)) {
+	
 	echo "successfully added to db";
+
+
+
 	} else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
+
 // Close connection
 mysqli_close($conn);
+
+
 ?>
 
 
