@@ -9,7 +9,7 @@
 
 <?php
 
-if (isset($_GET["trip_id"])) { 
+if (isset($_GET["trip_id"])) { //Old trip
 	
 	$trip_id = $_GET["trip_id"];
 	
@@ -29,8 +29,8 @@ elseif (isset($_POST["tripName"])) { //New trip
 	$tripUserId= $_POST["user_id"];
 
 	// Query to insert into myDB, table MyGuests
-	$sql = "INSERT INTO trips (userId, name, startDate, endDate, description, location)
-	VALUES ('$tripUserId', '$tripName', '$tripStartDate', '$tripEndDate', '$tripDescription', '$tripLocation')";
+	$sql = 'INSERT INTO trips (userId, name, startDate, endDate, description, location)
+	VALUES ("$tripUserId", "$tripName", "$tripStartDate", "$tripEndDate", "$tripDescription", "$tripLocation")';
 
 	// Confirm added to DB
 	if (mysqli_query($conn, $sql)) {
@@ -45,11 +45,9 @@ elseif (isset($_POST["tripName"])) { //New trip
 	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
 
-} else {
+} else { //Something wrong with the trip ID
 	echo "something is wrong with the trip ID";
 }
-
-echo " The location its is: " . $tripLocation;
 
 
 /*  // Turn location input into Lat/Long coordinates
