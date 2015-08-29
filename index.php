@@ -66,16 +66,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
         } 
         echo "</table><br><br>"; 
 
-//build search form
-      echo '<form action="" method="post">';
-          echo '<input type="text" placeholder="Name" id="customerAutocomplte" class="ui-autocomplete-input" autocomplete="off" />';
-      echo '</form>';
-
-
-
-
-
-    ?>
+?>
 
 
 <h1>Create a Trip</h2>

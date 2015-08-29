@@ -50,6 +50,13 @@ if (isset($_GET["trip_id"])) { //Old trip
 		} else {
 		    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
+
+	//FOR NEXT SESSION
+		/*
+		query: select the userID of the invited user
+		save user id in function?
+		query: insert invited user ID, tripID to participants table
+		*/
 	
 	// Close connection
 	mysqli_close($conn);
