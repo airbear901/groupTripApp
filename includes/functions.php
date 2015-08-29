@@ -22,5 +22,5 @@ function getTripLocation ($trip_id) {
 
 	$result = mysqli_query($conn, $sql);
 	$tripLocation = mysqli_fetch_array( $result );
-	echo $tripLocation['location'];
+	return  $tripLocation['location'];
 }

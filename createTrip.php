@@ -16,7 +16,9 @@ if (isset($_GET["trip_id"])) {
 	$tripLocation = getTripLocation($trip_id);
 	
 
-} elseif (isset($_POST["tripName"])) { //New trip
+} 
+
+elseif (isset($_POST["tripName"])) { //New trip
 	
 	// make it a variable
 	$tripName = $_POST["tripName"];
