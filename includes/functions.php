@@ -24,3 +24,42 @@ function getTripLocation ($trip_id) {
 	$tripLocation = mysqli_fetch_array( $result );
 	return  $tripLocation['location'];
 }
+
+function latLong ($tripLocation) {
+	$maps_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($tripLocation);
+
+	$maps_json = file_get_contents($maps_url);
+	$maps_array = json_decode($maps_json, true);
+
+	$lng = $maps_array['results'][0]['geometry']['location']['lng'];
+	$lat = $maps_array['results'][0]['geometry']['location']['lat'];
+	
+	return $lng;
+	return $lat;
+}
+
+function getEmail ($user_email) {
+	
+	global $conn;
+
+	$sql = "SELECT email FROM users WHERE user_email LIKE '$user_email';";
+	$result = mysqli_query($conn, $sql);
+	$user_email = mysqli_fetch_array( $result );
+	return  $user_email['user_email'];
+
+}
+
+function insertParticipant ($trip_id, $user_id){
+
+	global $conn;
+
+	$sql = "INSERT INTO participants (trip_id, user_id) VALUES ('$trip_id', '$user_id')";
+
+	if (mysqli_query($conn, $sql)) {
+			mysqli_close($conn);
+		} else {
+		    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+}
+
+

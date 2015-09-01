@@ -66,18 +66,8 @@ if (isset($_GET["trip_id"])) { //Old trip
 }
 
 
-/*  // Turn location input into Lat/Long coordinates
-	
-
-	$maps_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($tripLocation);
-
-	$maps_json = file_get_contents($maps_url);
-	$maps_array = json_decode($maps_json, true);
-
-	$lng = $maps_array['results'][0]['geometry']['location']['lng'];
-	$lat = $maps_array['results'][0]['geometry']['location']['lat'];
-
-*/
+// Turn location input into Lat/Long coordinates
+latLong ($tripLocation);
 
 //Display input for adding expenses
 echo "<h1>" . $tripName . "</h1>";
