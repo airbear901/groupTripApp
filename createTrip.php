@@ -52,11 +52,17 @@ if (isset($_GET["trip_id"])) { //Old trip
 		}
 
 	//FOR NEXT SESSION
-		/*
-		query: select the userID of the invited user
-		save user id in function?
-		query: insert invited user ID, tripID to participants table
-		*/
+	
+		//query: select the userID of the invited user
+		getEmail ($partEmail);
+		
+		$user_email['user_email'];
+		//save user id in function?
+
+
+		//query: insert invited user ID, tripID to participants table
+		insertParticipant ($trip_id, $user_id);
+
 	
 	// Close connection
 	mysqli_close($conn);
