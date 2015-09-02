@@ -80,7 +80,7 @@ echo "<h1>" . $tripName . "</h1>";
 	
 echo "Add an expense below!";
 
-echo '<form action="submit.php" method="post">';
+echo '<form action="expenses/submit.php" method="post">';
 	echo 'Expense Name: <input type="text" name="expenseTitle" id="expenseTitle"><br>';
 	echo 'Cost: <input type="text" name="expenseCost" id="expenseCost"><br>';
 	echo 'Number of Purchasers: <input type="text" name="expensePurchasers" id="expensePurchasers"><br>';

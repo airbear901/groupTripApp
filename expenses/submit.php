@@ -1,6 +1,6 @@
 <html>
 <head>
-	<?php include 'includes/connectToDb.php'; ?>
+	<?php include '../includes/connectToDb.php'; ?>
 </head>
 <body>
 
