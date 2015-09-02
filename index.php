@@ -64,7 +64,7 @@ if (isset($_GET['register']) && ! $login->isRegistrationSuccessful() &&
         echo "<td>".$info['startDate'] . "</td> ";
         echo "<td>".$info['location'] . "</td></tr> ";
         } 
-        echo "</table><br><br>"; 
+    echo "</table><br><br>"; 
 
 ?>
 

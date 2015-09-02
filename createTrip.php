@@ -12,8 +12,8 @@
 if (isset($_GET["trip_id"])) { //Old trip
 	
 	$trip_id = $_GET["trip_id"];
-	
 	$tripLocation = getTripLocation($trip_id);
+	$tripName = getTripName ($trip_id);
 
 } elseif (isset($_POST["tripName"])) { //New trip
 	
@@ -45,35 +45,19 @@ if (isset($_GET["trip_id"])) { //Old trip
 	$sql2 = "INSERT INTO participants (trip_id, user_id) VALUES ('$trip_id', '$tripUserId')";
 
 	if (mysqli_query($conn, $sql2)) {
-			// Close connection
-			//mysqli_close($conn);
 		} else {
 		    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
 
-	//FOR NEXT SESSION
-	
-		//query: select the userID of the invited user
-		$part_id =  getUserId($partEmail);
-		 
+	//Select the userID of the invited user
+	$part_id =  getUserId($partEmail);
 
-		//save user id in function?
+	//Insert invited user ID, tripID to participants table
+	insertParticipant ($trip_id, $part_id);
 
-
-		//query: insert invited user ID, tripID to participants table
-		insertParticipant ($trip_id, $part_id);
-
-	
-// Close connection
-mysqli_close($conn);
-
-} else { //Something wrong with the trip ID
-	echo "something is wrong with the trip ID";
+} else { 
+	echo "Something is wrong!"; //Something wrong with the trip ID
 }
-
-
-// Turn location input into Lat/Long coordinates
-latLong ($tripLocation);
 
 //Display input for adding expenses
 echo "<h1>" . $tripName . "</h1>";
@@ -89,9 +73,20 @@ echo '<form action="expenses/submit.php" method="post">';
 	echo '<input type="submit">';
 echo '</form>';
 
+//print all participants of the trip
+$participants = getParticipants($trip_id);
+
+echo "<table>"; 
+    echo "<thead><th>Participants</th></thead>";
+    while($info = mysqli_fetch_array( $participants )) { 
+    	echo "<tr><td>" . $info['user_name'] . "</td></tr>";
+    } 
+echo "</table>"; 
+
+// Turn location input into Lat/Long coordinates
+latLong ($tripLocation);
+
 ?>
-
-
 
 <br>
 <iframe
@@ -100,8 +95,6 @@ echo '</form>';
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyANQeFfFVmE-Kyw1SJ5bbarzfhAvokDfQY&q=<?php echo $tripLocation; ?>" allowfullscreen>
 </iframe>
-
-
 
 </body>
 </html>
