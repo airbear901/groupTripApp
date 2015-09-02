@@ -46,7 +46,7 @@ if (isset($_GET["trip_id"])) { //Old trip
 
 	if (mysqli_query($conn, $sql2)) {
 			// Close connection
-			mysqli_close($conn);
+			//mysqli_close($conn);
 		} else {
 		    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
@@ -54,18 +54,18 @@ if (isset($_GET["trip_id"])) { //Old trip
 	//FOR NEXT SESSION
 	
 		//query: select the userID of the invited user
-		getEmail ($partEmail);
-		
-		$user_email['user_email'];
+		$part_id =  getUserId($partEmail);
+		 
+
 		//save user id in function?
 
 
 		//query: insert invited user ID, tripID to participants table
-		insertParticipant ($trip_id, $user_id);
+		insertParticipant ($trip_id, $part_id);
 
 	
-	// Close connection
-	mysqli_close($conn);
+// Close connection
+mysqli_close($conn);
 
 } else { //Something wrong with the trip ID
 	echo "something is wrong with the trip ID";

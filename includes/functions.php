@@ -17,10 +17,11 @@ function getTrips ($user_id) {
 function getTripLocation ($trip_id) {
 
 	global $conn;
+
 	
 	$sql = "SELECT location FROM trips WHERE id = '$trip_id';";
 
-	$result = mysqli_query($conn, $sql);
+	$tripLocation = mysqli_query($conn, $sql);
 	$tripLocation = mysqli_fetch_array( $result );
 	return  $tripLocation['location'];
 }
@@ -38,14 +39,13 @@ function latLong ($tripLocation) {
 	return $lat;
 }
 
-function getEmail ($user_email) {
+function getUserId ($user_email) {
 	
 	global $conn;
-
-	$sql = "SELECT email FROM users WHERE user_email LIKE '$user_email';";
+	$sql = "SELECT user_id FROM users WHERE user_email LIKE '$user_email';";
 	$result = mysqli_query($conn, $sql);
-	$user_email = mysqli_fetch_array( $result );
-	return  $user_email['user_email'];
+	$partId = mysqli_fetch_array( $result );
+	return  $partId['user_id'];
 
 }
 
