@@ -59,6 +59,8 @@ if (isset($_GET["trip_id"])) { //Old trip
 	echo "Something is wrong!"; //Something wrong with the trip ID
 }
 
+$participants = getParticipants($trip_id);
+
 //Display input for adding expenses
 echo "<h1>" . $tripName . "</h1>";
 	
@@ -69,11 +71,22 @@ echo '<form action="expenses/submit.php" method="post">';
 	echo 'Cost: <input type="text" name="expenseCost" id="expenseCost"><br>';
 	echo 'Number of Purchasers: <input type="text" name="expensePurchasers" id="expensePurchasers"><br>';
 	echo 'Number of Users: <input type="text" name="expenseUsers" id="expenseUsers"><br>';
+	
+
+	echo '<select name="purchasers" multiple>';
+	   while($info = mysqli_fetch_array( $participants )) { 
+    	echo '<option value="' . $info['user_name'] . '[]">' . $info['user_name'] . '</option>';
+    } 
+
+	echo '</select>';
+
+
 	echo '<input type="hidden" name="tripId" value="' . $trip_id . '">';
 	echo '<input type="submit">';
 echo '</form>';
 
 //print all participants of the trip
+/*
 $participants = getParticipants($trip_id);
 
 echo "<table>"; 
@@ -82,7 +95,7 @@ echo "<table>";
     	echo "<tr><td>" . $info['user_name'] . "</td></tr>";
     } 
 echo "</table>"; 
-
+*/
 // Turn location input into Lat/Long coordinates
 latLong ($tripLocation);
 
